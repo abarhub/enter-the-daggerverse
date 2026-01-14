@@ -2,10 +2,10 @@ name: CI hello
 on:
   pull_request:
     branches:
-      - "main"
+      - "snowcamp741"
   push:
     branches:
-      - "main"
+      - "snowcamp741"
 
 jobs:
   CI:
@@ -14,3 +14,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Hello
+        uses: dagger/dagger-for-github@v8.2.0
+        with:
+          shell: container | from alpine | with-exec echo,"hello, world!" | stdout
+          cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
